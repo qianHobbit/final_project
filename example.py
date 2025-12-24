@@ -118,8 +118,22 @@ def handle_form(request):
         body = request.body.decode() if request.body else ''
         data = parse_qs(body)
 
-        name = data.get('name', ['Unknown'])[0]
-        email = data.get('email', ['Unknown'])[0]
+        name = data.get('name', [''])[0]
+        email = data.get('email', [''])[0]
+
+        if not name or not email:
+            if not name or not email:
+                html = """
+                    <html>
+                        <head><title>400 Bad Request</title></head>
+                        <body>
+                            <h1>400 Bad Request</h1>
+                            <p>Все поля должны быть заполнены!</p>
+                            <a href="/form">Назад к форме</a>
+                        </body>
+                    </html>
+                    """
+                return Response(body=html, status=400)
 
         html = f"""
         <html>
