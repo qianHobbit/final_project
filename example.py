@@ -18,7 +18,6 @@ def index(request):
         <head><title>Web Framework Example</title></head>
         <body>
             <h1>Welcome to the Web Framework!</h1>
-            <p>This is a minimal web framework built with Python standard library.</p>
             <ul>
                 <li><a href="/hello">Hello Page</a></li>
                 <li><a href="/users">Users API</a></li>
@@ -39,7 +38,6 @@ def hello(request):
         <head><title>Hello</title></head>
         <body>
             <h1>Hello, {name}!</h1>
-            <p>Try adding ?name=YourName to the URL</p>
             <a href="/">Back to home</a>
         </body>
     </html>
@@ -128,7 +126,6 @@ def handle_form(request):
                         <head><title>400 Bad Request</title></head>
                         <body>
                             <h1>400 Bad Request</h1>
-                            <p>Все поля должны быть заполнены!</p>
                             <a href="/form">Назад к форме</a>
                         </body>
                     </html>
@@ -156,12 +153,6 @@ def handle_form(request):
             body=f'<html><body><h1>Error: {str(e)}</h1></body></html>',
             status=400
         )
-
-
-# пример работы 404
-@app.route('/404-test')
-def not_found_test(request):
-    return Response(body='This route exists! Try visiting /nonexistent for a 404.')
 
 
 if __name__ == '__main__':
